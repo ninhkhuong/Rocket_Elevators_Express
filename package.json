@@ -1,7 +1,6 @@
 {
   "name": "rocket_elevators_express",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -18,9 +17,11 @@
   },
   "homepage": "https://github.com/ninhkhuong/Rocket_Elevators_Express#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "description": ""
 }
