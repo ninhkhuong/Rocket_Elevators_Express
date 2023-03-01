@@ -1,4 +1,4 @@
- [
+const agents = [
   {"first_name":"Orlando","last_name":"Perez","email":"perez@rocket.elv","region":"north","rating":"95","fee":"10000"},
   {"first_name":"Brutus","last_name":"Konway","email":"brutus@rocket.elv","region":"north","rating":"92","fee":"9000"},
   {"first_name":"Bob","last_name":"Boberson","email":"bob@rocket.elv","region":"east","rating":"85","fee":"10000"},
@@ -16,3 +16,5 @@
   {"first_name":"Zach","last_name":"Van Den Zilch","email":"zach@rocket.elv","region":"north","rating":"70","fee":"6000"},
   {"first_name":"Al","last_name":"Stein","email":"relative@rocket.elv","region":"south","rating":"54","fee":"4000"}
 ]
+
+module.exports = agents;

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -8,13 +9,15 @@ const port = process.env.PORT;
 const environment = process.env.ENVIRONMENT;
 
 // agents.js
-const agents = require('./agents.json');
-module.exports = agents;
+const agents = require('./agents');
 
 app.get('/agents',(req,res) => {
-  const emails = agents.map(agent => agent.email).join(', ');
-  res.send(emails);
-});
+  const results = [];
+
+  agents.forEach(agent => {results.push({email: agent.email})});
+
+  res.send(results);
+  });
 
 
 //Create a route that returns an error code and message
