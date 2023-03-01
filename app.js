@@ -4,8 +4,17 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-const port = process.env.PORT || 8080;
-const environment = process.env.ENVIRONMENT || "development";
+const port = process.env.PORT;
+const environment = process.env.ENVIRONMENT;
+
+// agents.js
+const agents = require('./agents.json');
+module.exports = agents;
+
+app.get('/agents',(req,res) => {
+  const emails = agents.map(agent => agent.email).join(', ');
+  res.send(emails);
+});
 
 
 //Create a route that returns an error code and message
@@ -13,10 +22,14 @@ app.get('/error', (req,res) => {
   res.status(500).send('Internal Server Error');
 });
 
-//Create a route that returns a message containing the port and environment name from the .env file
-app.get('/', (req,res)=>{
+app.get('/hello', (req,res)=>{
+  res.send(`<h1>Hello</h1>`);
+});
+
+app.get('/status', (req,res)=>{
   res.send(`Sever is running on port ${port} in ${environment} mode`);
 });
+
 
 
 app.listen(port,() =>{
