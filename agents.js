@@ -17,4 +17,8 @@ const agents = [
   {"first_name":"Al","last_name":"Stein","email":"relative@rocket.elv","region":"south","rating":"54","fee":"4000"}
 ]
 
-module.exports = agents;
+const tierCosts = {standard: 8000, premium: 12000, excelium: 15000};
+const installCosts = {standard: 0.1, premium: 0.15, excelium: 0.2};
+
+
+module.exports = {agents, tierCosts, installCosts};

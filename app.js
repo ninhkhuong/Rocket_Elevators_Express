@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const {validateParameters} = require('./calculations');
+const {calculateResidential} = require('./calculations');
+
 
 
 const dotenv = require('dotenv');
@@ -10,6 +13,21 @@ const environment = process.env.ENVIRONMENT;
 
 // agents.js
 const agents = require('./agents');
+
+//residential calculation
+app.get('/calc-residential', (req,res) => {
+  const { apartments, floors, tier } = req.query;
+ 
+const validationError = validateParameters(apartments, floors, tier);
+  if (validationError) {
+    return res.status(400).json(validationError);
+  }
+
+  //calculate number of elevators required and total cost
+  const result = calculateResidential(apartments, floors, tier);
+
+  res.json(result);
+});
 
 //Create a route that returns list of emails in agents.js
 app.get('/agents',(req,res) => {
