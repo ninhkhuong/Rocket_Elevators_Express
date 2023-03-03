@@ -1,12 +1,15 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const {validateParameters} = require('./calculations');
-const {calculateResidential} = require('./calculations');
-
-
 
 const dotenv = require('dotenv');
-dotenv.config();
+const {validateParameters} = require('./calculations');
+const {calculateResidential} = require('./calculations');
+const bodyparser = require('body-parser');
+
+app.use(bodyparser.urlencoded({extended:true}));
+app.use(bodyparser.json());
+
 
 const port = process.env.PORT;
 const environment = process.env.ENVIRONMENT;
@@ -15,6 +18,8 @@ const environment = process.env.ENVIRONMENT;
 const agents = require('./agents');
 
 //residential calculation
+//http://localhost:3000/calc-residential?apartments=&floors=&tier=
+
 app.get('/calc-residential', (req,res) => {
   const { apartments, floors, tier } = req.query;
  
@@ -71,7 +76,18 @@ app.get('/region-avg', (req, res) => {
   res.json(response);
 });
 
+// contact-us endpoint
+app.post('/contact-us', (req,res)=>{
+  const {first_name, last_name, message} = req.body;
+  
+   // log the request body
+   console.log(req.body);
 
+   // return response
+  res.json({
+    message: `Thank you ${first_name} ${last_name} for contacting us. We have received your message: "${message}".`
+  });
+});
   
 
 
